@@ -12,7 +12,7 @@ public class  Treinamento {
                 rede.train(entradas[j], saidas[j]);
             }
 
-            if (epoca % 50 == 0) {
+            if (epoca % 25 == 0) {
                 int acertos = 0;
                 for (int j = 0; j < entradas.length; j++) {
                     double[] saidaPredita = rede.feedforward(entradas[j]);
