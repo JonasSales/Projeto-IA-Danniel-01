@@ -8,9 +8,14 @@ public class Neuron {
     public Neuron(int entradas) {
         weights = new double[entradas];
         Random rand = new Random();
-        for (int i = 0; i < entradas; i++)
-            weights[i] = rand.nextDouble() * 2 - 1;
-        bias = rand.nextDouble() * 2 - 1;
+
+        double limit = Math.sqrt(6.0 / entradas);  // limite para a distribuição uniforme He
+
+        for (int i = 0; i < entradas; i++) {
+            weights[i] = rand.nextDouble() * 2 * limit - limit; // valor entre -limit e +limit
+        }
+
+        bias = rand.nextDouble() * 2 * limit - limit; // bias também na faixa [-limit, limit]
     }
 
     public double activate(double[] inputs) {
