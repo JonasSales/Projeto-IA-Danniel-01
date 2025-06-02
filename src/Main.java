@@ -12,8 +12,8 @@ public class Main {
         final int epocas = 2500;
 
         //Bons valores entradas * 2 e learning rate 2.53
-        //2.8 ótimos resultados
-        NeuralNetwork rede = new NeuralNetwork(1, entradas.length*2, 3, 2.8); // 1 entrada, 25 ocultos, 3 saídas
+        //2.875 ótimos resultados
+        NeuralNetwork rede = new NeuralNetwork(1, entradas.length*2, 3, 2.875); // 1 entrada, 25 ocultos, 3 saídas
         Treinamento treinamento = new Treinamento();
 
         treinamento.treinar(rede, entradas, saidas, epocas);
