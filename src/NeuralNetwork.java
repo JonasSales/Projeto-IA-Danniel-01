@@ -1,3 +1,5 @@
+import java.io.*;
+
 public class NeuralNetwork {
     private final Neuron[] hidden;
     private final Neuron[] output;
@@ -61,4 +63,42 @@ public class NeuralNetwork {
         for (int i = 0; i < hidden.length; i++)
             hidden[i].updateWeights(input, hiddenDeltas[i], learningRate);
     }
+
+    public void printBias() {
+        System.out.println("\nBias da Camada Oculta:");
+        for (int i = 0; i < hidden.length; i++) {
+            System.out.printf("Neuron %d: %.6f%n", i, hidden[i].bias);
+        }
+
+        System.out.println("\nBias da Camada de Saída:");
+        for (int i = 0; i < output.length; i++) {
+            System.out.printf("Neuron %d: %.6f%n", i, output[i].bias);
+        }
+    }
+
+    public void saveBias(String filePath) {
+        try (PrintWriter writer = new PrintWriter(new FileWriter(filePath))) {
+            for (Neuron h : hidden)
+                writer.println(h.getBias());
+            for (Neuron o : output)
+                writer.println(o.getBias());
+            System.out.println("Bias salvos em " + filePath);
+        } catch (IOException e) {
+            System.out.println("Erro ao salvar biases: " + e.getMessage());
+        }
+    }
+
+    public void loadBias(String filePath) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+            for (Neuron h : hidden)
+                h.setBias(Double.parseDouble(reader.readLine()));
+            for (Neuron o : output)
+                o.setBias(Double.parseDouble(reader.readLine()));
+            System.out.println("Bias carregados de " + filePath);
+        } catch (IOException | NumberFormatException e) {
+            System.out.println("Erro ao carregar biases: " + e.getMessage());
+        }
+    }
+
+
 }
