@@ -39,4 +39,15 @@ public class Neuron {
     public double sigmoidDerivative() {
         return output * (1 - output);
     }
+
+
+    public void setBias(double bias) {
+        this.bias = bias;
+    }
+
+    public double getBias() {
+        return bias;
+    }
+
+
 }
