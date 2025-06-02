@@ -9,22 +9,13 @@ public class Main {
                 {1,0,0}, {1,0,1}, {1,1,0}, {1,1,1}
         };
 
-        NeuralNetwork rede = new NeuralNetwork(1, 25, 3); // 1 entrada, 20 neurônios ocultos, 3 saídas
+        final int epocas = 3000;
 
-        // Treinamento
-        for (int i = 0; i < 20000; i++) {
-            for (int j = 0; j < entradas.length; j++) {
-                rede.train(entradas[j], saidas[j]);
-            }
-        }
+        NeuralNetwork rede = new NeuralNetwork(1, entradas.length, 3, 2.53); // 1 entrada, 25 ocultos, 3 saídas
+        Treinamento treinamento = new Treinamento();
 
-        // Teste
-        for (double[] entrada : entradas) {
-            double[] resultado = rede.feedforward(entrada);
-            System.out.printf("Entrada: %.2f => Saída: ", entrada[0]);
-            for (double v : resultado)
-                System.out.print((v >= 0.5 ? 1 : 0) + " ");
-            System.out.println();
-        }
+        treinamento.treinar(rede, entradas, saidas, epocas);
+        treinamento.resultados(rede, entradas);
+
     }
 }
