@@ -19,5 +19,21 @@ public class Main {
         treinamento.treinar(rede, entradas, saidas, epocas);
         treinamento.resultados(rede, entradas);
 
+
+        rede.printBiases();
+
+
+        /*System.out.println("\nTestando valores de 0.00 até 1.00 (passo de 0.01):");
+        for (int i = 0; i <= 100; i++) {
+            double entrada = i / 100.0;
+            double[] resultado = rede.feedforward(new double[]{entrada});
+            System.out.printf("Entrada: %.2f -> Saída: ", entrada);
+            for (double v : resultado)
+                System.out.print((v >= 0.5 ? 1 : 0) + " ");
+            System.out.println();
+        }*/
+
     }
+
 }
+
