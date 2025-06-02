@@ -20,7 +20,7 @@ public class Main {
         treinamento.resultados(rede, entradas);
 
 
-        rede.printBiases();
+        rede.printBias();
 
 
         /*System.out.println("\nTestando valores de 0.00 até 1.00 (passo de 0.01):");
