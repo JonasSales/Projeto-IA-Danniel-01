@@ -12,7 +12,7 @@ public class  Treinamento {
                 rede.train(entradas[j], saidas[j]);
             }
 
-            if (epoca % 25 == 0) {
+            if (epoca % 100 == 0) {
                 int acertos = 0;
                 for (int j = 0; j < entradas.length; j++) {
                     double[] saidaPredita = rede.feedforward(entradas[j]);
@@ -31,6 +31,7 @@ public class  Treinamento {
                 System.out.printf("Época %d - Precisão: %.2f%%%n", epoca, precisao);
             }
         }
+        rede.saveBias("bias.txt");
     }
 
     public void resultados(NeuralNetwork rede,double[][] entradas){
