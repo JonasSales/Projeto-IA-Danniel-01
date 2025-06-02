@@ -1,11 +1,12 @@
 public class NeuralNetwork {
-    private Neuron[] hidden;
-    private Neuron[] output;
-    private double learningRate = 0.5;
+    private final Neuron[] hidden;
+    private final Neuron[] output;
+    private final double learningRate;
 
-    public NeuralNetwork(int entrada, int oculto, int saida) {
+    public NeuralNetwork(int entrada, int oculto, int saida, double learningRate) {
         hidden = new Neuron[oculto];
         output = new Neuron[saida];
+        this.learningRate = learningRate;
 
         for (int i = 0; i < oculto; i++)
             hidden[i] = new Neuron(entrada);
