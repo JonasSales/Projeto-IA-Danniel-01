@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
         double[][] entradas = {
@@ -11,29 +13,49 @@ public class Main {
 
         final int epocas = 2500;
 
-        //Bons valores entradas * 2 e learning rate 2.53
-        //2.875 ótimos resultados
-        NeuralNetwork rede = new NeuralNetwork(1, entradas.length*2, 3, 2.875); // 1 entrada, 25 ocultos, 3 saídas
-        Treinamento treinamento = new Treinamento();
+        NeuralNetworkManager manager = new NeuralNetworkManager(1, entradas.length * 2, 3, 2.875, entradas, saidas, epocas);
 
-        treinamento.treinar(rede, entradas, saidas, epocas);
-        treinamento.resultados(rede, entradas);
+        Scanner scanner = new Scanner(System.in);
+        int choice;
 
+        do {
+            System.out.println("\n--- Menu da Rede Neural ---");
+            System.out.println("1. Treinar a Rede Neural");
+            System.out.println("2. Carregar Modelo da Rede");
+            System.out.println("3. Testar a Rede (com dados de treinamento)");
+            System.out.println("4. Testar a Rede (com entrada personalizada)");
+            System.out.println("5. Mostrar Parâmetros (Biases e Pesos) da Rede");
+            System.out.println("0. Sair");
+            System.out.print("Escolha uma opção: ");
 
-        rede.printBias();
+            choice = scanner.nextInt();
 
+            switch (choice) {
+                case 1:
+                    manager.treinarRede();
+                    break;
+                case 2:
+                    System.out.print("Digite o caminho do arquivo do modelo (ex: model.txt): ");
+                    String filePath = scanner.next();
+                    manager.carregarRede(filePath);
+                    break;
+                case 3:
+                    manager.testarRede();
+                    break;
+                case 4:
+                    manager.testarComValor();
+                    break;
+                case 5:
+                    manager.mostrarBiasEPesoModelo();
+                    break;
+                case 0:
+                    System.out.println("Saindo...");
+                    break;
+                default:
+                    System.out.println("Opção inválida. Por favor, tente novamente.");
+            }
+        } while (choice != 0);
 
-        /*System.out.println("\nTestando valores de 0.00 até 1.00 (passo de 0.01):");
-        for (int i = 0; i <= 100; i++) {
-            double entrada = i / 100.0;
-            double[] resultado = rede.feedforward(new double[]{entrada});
-            System.out.printf("Entrada: %.2f -> Saída: ", entrada);
-            for (double v : resultado)
-                System.out.print((v >= 0.5 ? 1 : 0) + " ");
-            System.out.println();
-        }*/
-
+        scanner.close();
     }
-
 }
-
