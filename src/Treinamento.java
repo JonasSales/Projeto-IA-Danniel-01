@@ -31,7 +31,7 @@ public class  Treinamento {
                 System.out.printf("Época %d - Precisão: %.2f%%%n", epoca, precisao);
             }
         }
-        rede.saveBias("bias.txt");
+        rede.salvarDadosModelo("model.txt");
     }
 
     public void resultados(NeuralNetwork rede,double[][] entradas){
